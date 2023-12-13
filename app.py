@@ -106,17 +106,10 @@ predicted_class = lr.predict([person1])
 # Generate probability of positive class (=1)
 probs = lr.predict_proba([person1])
 
-# Person 1 predicted class and probability
-print(f"Predicted class: {predicted_class[0]}") # 0=does not use LinkedIn, 1=uses LinkedIn
-print(f"Probability that this person is a LinkedIn user: {probs[0][1]}")
 
 person2 = [82, 8, 7, 2, 1, 2]
 predicted_class2 = lr.predict([person2])
 probs2 = lr.predict_proba([person2])
 
-
-# Person 2 predicted class and probability
-print(f"Predicted class: {predicted_class2[0]}") # 0=does not use LinkedIn, 1=uses LinkedIn
-print(f"Probability that this person is a LinkedIn user: {probs2[0][1]}")
 
 
