@@ -61,42 +61,7 @@ lr = LogisticRegression()
 lr.fit(X_train, y_train)
 
 
-# New data for predictions
-newdata = pd.DataFrame({
-    "age": [42,82],
-    "income": [8,8],
-    "education": [7,7],
-     "gender": [2,1],
-    "marital": [1,1],
-    "parent": [2, 2],
-})
 
-newdata
-
-# Use model to make predictions
-predicted_labels = lr.predict(newdata)
-
-# Add the predicted labels to the 'newdata' DataFrame
-newdata["predicted_labels"] = predicted_labels
-
-# Display the 'newdata' DataFrame with predicted labels
-print(newdata)
-
-newdata
-
-# New data for features: age, income, education, gender, marital, parent for Person 1
-person1 = [42, 8, 7, 2, 1, 2]
-
-# Predict class, given input features
-predicted_class = lr.predict([person1])
-
-# Generate probability of positive class (=1)
-probs = lr.predict_proba([person1])
-
-
-person2 = [82, 8, 7, 2, 1, 2]
-predicted_class2 = lr.predict([person2])
-probs2 = lr.predict_proba([person2])
 
 
 
