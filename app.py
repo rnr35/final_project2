@@ -81,14 +81,14 @@ income_level_options = {
 income_level = st.selectbox("Income Level Options:", list(income_level_options.values()))
 
 education_level_options = {
-    1: "Less than high school (Grades 1-8 or no formal schooling)",
-    2: "High school incomplete (Grades 9-11 or Grade 12 with NO diploma)",
-    3: "High school graduate (Grade 12 with diploma or GED certificate)",
-    4: "Some college, no degree (includes some community college)",
+    1: "Less than high school",
+    2: "High school Incomplete",
+    3: "High school Graduate",
+    4: "Some college, no degree",
     5: "Two-year associate degree from a college or university",
     6: "Four-year college or university degree/Bachelor’s degree",
     7: "Some postgraduate or professional schooling, no postgraduate degree",
-    8: "Postgraduate or professional degree, including master’s, doctorate, medical or law degree",
+    8: "Postgraduate or professional degree",
 }
 
 education_level = st.selectbox("Education Level Options:", list(education_level_options.values()))
@@ -139,7 +139,7 @@ def preprocess_input(income_level, education_level, is_parent, marital_status, g
 user_input = preprocess_input(income_level, education_level, is_parent, marital_status, gender, age)
 
 # Make predictions using the loaded model
-# Replace this line with the actual prediction code based on your model
+
 prediction = lr.predict([user_input])
 probability = lr.predict_proba([user_input])[:, 1]  # Probability of being classified as a LinkedIn user
 
