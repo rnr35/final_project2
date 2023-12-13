@@ -62,7 +62,7 @@ y_pred = lr.predict(X_test)
 
 import streamlit as st
 
-st.title("LinkedIn User Predictor")
+st.title("My Prediction App!")
 
 st.markdown("### LinkedIn User or Not? :computer::smile::computer:")
 
