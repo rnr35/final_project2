@@ -133,14 +133,11 @@ def preprocess_input(income_level, education_level, is_parent, marital_status, g
     # Example age preprocessing (scale to a range between 0 and 1)
     age_encoded = age / 97  # Assuming 97 is the maximum age
 
-    # Concatenate the encoded features
     user_input = [income_level_encoded, education_level_encoded, is_parent_encoded, marital_status_encoded, gender_encoded, age_encoded]
 
     return user_input
 
-
 user_input = preprocess_input(income_level, education_level, is_parent, marital_status, gender, age)
-
 
 prediction = model.predict([user_input])
 probability = model.predict_proba([user_input])[:, 1]  # Probability of being classified as a LinkedIn user
