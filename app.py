@@ -60,52 +60,48 @@ lr = LogisticRegression()
 lr.fit(X_train, y_train)
 y_pred = lr.predict(X_test)
 
-st.markdown('''
-[LinkedIn User or Not?]:computer::smile::computer:
-''')
+import streamlit as st
 
-st.markdown('''
-[Input income level, education level, parental status, marital status, age, and gender]
-''')
+st.title("User Profile Predictor")
 
-st.markdown("Income Level Options:")
-st.markdown("1: 10K - 19,999K")
-st.markdown("2: 20K - 29,999K")
-st.markdown("3: 30K - 49,999K")
-st.markdown("4: 50K - 59,999K")
-st.markdown("5: 60K - 69,999K")
-st.markdown("6: 70K - 79,999K")
-st.markdown("7: 80K - 89,999K")
-st.markdown("8: 90K - 99,999K")
-st.markdown("9: 100K - 109,999K")
-st.markdown("10: 110K - 119,999K")
-st.markdown("11: 120K - 129,999K")
-st.markdown("12: 130K - 139,999K")
-st.markdown("13: 140K - 149,999K")
-st.markdown("14: 150K and Above")
+st.markdown("### LinkedIn User or Not? :computer::smile::computer:")
+linkedin_user = st.radio("Choose an option:", ["Yes", "No"])
 
-st.markdown("Education Level Options:")
-st.markdown("1: Less than High School")
-st.markdown("2: High School Incomplete")
-st.markdown("3: High School Graduate")
-st.markdown("4: Some College, No Degree")
-st.markdown("5: Two-Year Associate Degree From University or College")
-st.markdown("6: Four-year College or University Degree/Bachelor’s degree")
-st.markdown("7: Some Postgraduate or Professional Schooling, No Postgraduate Degree")
-st.markdown("8: Postgraduate or Professional Degree, including master’s, doctorate, medical or law degree")
+st.markdown("### Income Level Options:")
+income_level = st.selectbox(
+    "Select your income level:",
+    ["10K - 19,999K", "20K - 29,999K", "30K - 49,999K", "50K - 59,999K",
+     "60K - 69,999K", "70K - 79,999K", "80K - 89,999K", "90K - 99,999K",
+     "100K - 109,999K", "110K - 119,999K", "120K - 129,999K", "130K - 139,999K",
+     "140K - 149,999K", "150K and Above"]
+)
 
-st.markdown("Are You A Parent of a Child Under 18 Living in Your Home:")
-st.markdown("1: Yes")
-st.markdown("2: No")
+st.markdown("### Education Level Options:")
+education_level = st.selectbox(
+    "Select your education level:",
+    ["Less than High School", "High School Incomplete", "High School Graduate",
+     "Some College, No Degree", "Two-Year Associate Degree From University or College",
+     "Four-year College or University Degree/Bachelor’s degree",
+     "Some Postgraduate or Professional Schooling, No Postgraduate Degree",
+     "Postgraduate or Professional Degree, including master’s, doctorate, medical or law degree"]
+)
 
-st.markdown("Marital Status:")
-st.markdown("1: Married")
-st.markdown("2: Living with a Partner")
-st.markdown("3: Divorced")
-st.markdown("4: Separated")
-st.markdown("5: Widowed")
-st.markdown("6: Never Been Married")
+st.markdown("### Are You A Parent of a Child Under 18 Living in Your Home?")
+is_parent = st.radio("Choose an option:", ["Yes", "No"])
 
-st.markdown("Gender:")
-st.markdown("1: Male")
-st.markdown("2: Female")
+st.markdown("### Marital Status:")
+marital_status = st.selectbox(
+    "Select your marital status:",
+    ["Married", "Living with a Partner", "Divorced", "Separated", "Widowed", "Never Been Married"]
+)
+
+st.markdown("### Gender:")
+gender = st.radio("Select your gender:", ["Male", "Female"])
+
+st.write("User Profile:")
+st.write(f"LinkedIn User: {linkedin_user}")
+st.write(f"Income Level: {income_level}")
+st.write(f"Education Level: {education_level}")
+st.write(f"Parent of a Child Under 18: {is_parent}")
+st.write(f"Marital Status: {marital_status}")
+st.write(f"Gender: {gender}")
