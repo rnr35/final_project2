@@ -65,7 +65,6 @@ import streamlit as st
 st.title("LinkedIn User Predictor")
 
 st.markdown("### LinkedIn User or Not? :computer::smile::computer:")
-linkedin_user = st.radio("Choose an option:", ["Yes", "No"])
 
 st.markdown("### Income Level Options:")
 income_level = st.selectbox(
@@ -87,7 +86,7 @@ education_level = st.selectbox(
 )
 
 st.markdown("### Are You A Parent of a Child Under 18 Living in Your Home?")
-is_parent = st.radio("Choose an option:", ["Yes", "No"])
+parent_option = st.radio("Choose an option:", ["Yes", "No"])
 
 st.markdown("### Marital Status:")
 marital_status = st.selectbox(
@@ -98,10 +97,11 @@ marital_status = st.selectbox(
 st.markdown("### Gender:")
 gender = st.radio("Select your gender:", ["Male", "Female"])
 
+# Now you can use the selected options for predictions or further processing
 st.write("User Profile:")
 st.write(f"LinkedIn User: {linkedin_user}")
 st.write(f"Income Level: {income_level}")
 st.write(f"Education Level: {education_level}")
-st.write(f"Parent of a Child Under 18: {is_parent}")
+st.write(f"Parent of a Child Under 18: {parent_option}")
 st.write(f"Marital Status: {marital_status}")
 st.write(f"Gender: {gender}")
