@@ -122,7 +122,6 @@ gender = st.selectbox("Gender:", list(gender_options.values()))
 age = st.number_input("Numeric Age (e.g., 25)", min_value=0, max_value=97, value=25)
 
 # Preprocess the user input data (convert categorical features to numerical values)
-# This is a placeholder preprocessing function; you should replace it with your actual preprocessing logic
 def preprocess_input(income_level, education_level, is_parent, marital_status, gender, age):
     income_level_encoded = list(income_level_options.keys())[list(income_level_options.values()).index(income_level)]
     education_level_encoded = list(education_level_options.keys())[list(education_level_options.values()).index(education_level)]
@@ -130,17 +129,19 @@ def preprocess_input(income_level, education_level, is_parent, marital_status, g
     marital_status_encoded = list(marital_status_options.keys())[list(marital_status_options.values()).index(marital_status)]
     gender_encoded = list(gender_options.keys())[list(gender_options.values()).index(gender)]
 
-    # Example age preprocessing (scale to a range between 0 and 1)
     age_encoded = age / 97  # Assuming 97 is the maximum age
 
     user_input = [income_level_encoded, education_level_encoded, is_parent_encoded, marital_status_encoded, gender_encoded, age_encoded]
 
     return user_input
 
+# Get the preprocessed user input
 user_input = preprocess_input(income_level, education_level, is_parent, marital_status, gender, age)
 
-prediction = model.predict([user_input])
-probability = model.predict_proba([user_input])[:, 1]  # Probability of being classified as a LinkedIn user
+# Make predictions using the loaded model
+# Replace this line with the actual prediction code based on your model
+prediction = lr.predict([user_input])
+probability = lr.predict_proba([user_input])[:, 1]  # Probability of being classified as a LinkedIn user
 
 # Display the prediction result
 st.write("### Prediction Results")
