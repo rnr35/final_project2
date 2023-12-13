@@ -66,42 +66,57 @@ st.title("LinkedIn User Predictor")
 
 st.markdown("### LinkedIn User or Not? :computer::smile::computer:")
 
-st.markdown("### Income Level Options:")
-income_level = st.selectbox(
-    "Select your income level:",
-    ["10K - 19,999K", "20K - 29,999K", "30K - 49,999K", "50K - 59,999K",
-     "60K - 69,999K", "70K - 79,999K", "80K - 89,999K", "90K - 99,999K",
-     "100K - 109,999K", "110K - 119,999K", "120K - 129,999K", "130K - 139,999K",
-     "140K - 149,999K", "150K and Above"]
-)
+income_level = st.selectbox("Income Level Options:", ["10K - 19,999K", "20K - 29,999K", "30K - 49,999K", "50K - 59,999K",
+                                                      "60K - 69,999K", "70K - 79,999K", "80K - 89,999K", "90K - 99,999K",
+                                                      "100K - 109,999K", "110K - 119,999K", "120K - 129,999K", "130K - 139,999K",
+                                                      "140K - 149,999K", "150K and Above"])
 
-st.markdown("### Education Level Options:")
-education_level = st.selectbox(
-    "Select your education level:",
-    ["Less than High School", "High School Incomplete", "High School Graduate",
-     "Some College, No Degree", "Two-Year Associate Degree From University or College",
-     "Four-year College or University Degree/Bachelor’s degree",
-     "Some Postgraduate or Professional Schooling, No Postgraduate Degree",
-     "Postgraduate or Professional Degree, including master’s, doctorate, medical or law degree"]
-)
+education_level = st.selectbox("Education Level Options:", ["Less than High School", "High School Incomplete", "High School Graduate",
+                                                           "Some College, No Degree", "Two-Year Associate Degree From University or College",
+                                                           "Four-year College or University Degree/Bachelor’s degree",
+                                                           "Some Postgraduate or Professional Schooling, No Postgraduate Degree",
+                                                           "Postgraduate or Professional Degree, including master’s, doctorate, medical or law degree"])
 
-st.markdown("### Are You A Parent of a Child Under 18 Living in Your Home?")
-parent_option = st.radio("Choose an option:", ["Yes", "No"])
+is_parent = st.radio("Are You A Parent of a Child Under 18 Living in Your Home?", ["Yes", "No"])
 
-st.markdown("### Marital Status:")
-marital_status = st.selectbox(
-    "Select your marital status:",
-    ["Married", "Living with a Partner", "Divorced", "Separated", "Widowed", "Never Been Married"]
-)
+marital_status = st.selectbox("Marital Status:", ["Married", "Living with a Partner", "Divorced", "Separated", "Widowed", "Never Been Married"])
 
-st.markdown("### Gender:")
-gender = st.radio("Select your gender:", ["Male", "Female"])
+gender = st.radio("Gender:", ["Male", "Female"])
 
-# Now you can use the selected options for predictions or further processing
-st.write("User Profile:")
-st.write(f"LinkedIn User: {linkedin_user}")
-st.write(f"Income Level: {income_level}")
-st.write(f"Education Level: {education_level}")
-st.write(f"Parent of a Child Under 18: {parent_option}")
-st.write(f"Marital Status: {marital_status}")
-st.write(f"Gender: {gender}")
+def preprocess_input(income_level, education_level, is_parent, marital_status, gender):
+    # Example preprocessing (convert categorical variables to one-hot encoding)
+    income_level_encoded = np.zeros(14)  # Placeholder encoding for income levels
+    income_level_encoded[int(income_level) - 1] = 1
+
+    education_level_encoded = np.zeros(8)  # Placeholder encoding for education levels
+    education_level_encoded[int(education_level) - 1] = 1
+
+    is_parent_encoded = 1 if is_parent == "Yes" else 0  # Convert Yes/No to binary
+
+    marital_status_encoded = np.zeros(6)  # Placeholder encoding for marital status
+    marital_status_encoded[int(marital_status) - 1] = 1
+
+    gender_encoded = 1 if gender == "Male" else 0  # Convert Male/Female to binary
+
+    # Concatenate the encoded features
+    user_input = np.concatenate([income_level_encoded, education_level_encoded, [is_parent_encoded],
+                                 marital_status_encoded, [gender_encoded]])
+
+    return user_input
+
+# Get the preprocessed user input
+user_input = preprocess_input(income_level, education_level, is_parent, marital_status, gender)
+
+# Make predictions using the loaded model
+# Replace this line with the actual prediction code based on your model
+prediction = model.predict([user_input])
+probability = model.predict_proba([user_input])[:, 1][0]  # Probability of being classified as a LinkedIn user
+
+# Display the prediction result
+st.write("### Prediction Results")
+if prediction[0] == 1:
+    st.write("You are classified as a LinkedIn user.")
+else:
+    st.write("You are not classified as a LinkedIn user.")
+
+st.write(f"Probability of being a LinkedIn user: {probability:.2f}")
