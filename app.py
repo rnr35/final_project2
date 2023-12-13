@@ -61,19 +61,6 @@ lr = LogisticRegression()
 lr.fit(X_train, y_train)
 
 
-# Make predictions using the model and the testing data
-y_pred = lr.predict(X_test)
-
-
-# Compare those predictions to the actual test data using a confusion matrix (positive class=1)
-confusion_matrix(y_test, y_pred)
-
-
-pd.DataFrame(confusion_matrix(y_test, y_pred),
-            columns=["Predicted negative", "Predicted positive"],
-            index=["Actual negative","Actual positive"]).style.background_gradient(cmap="PiYG")
-
-
 # New data for predictions
 newdata = pd.DataFrame({
     "age": [42,82],
