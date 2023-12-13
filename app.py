@@ -62,7 +62,7 @@ y_pred = lr.predict(X_test)
 
 import streamlit as st
 
-st.title("User Profile Predictor")
+st.title("LinkedIn User Predictor")
 
 st.markdown("### LinkedIn User or Not? :computer::smile::computer:")
 linkedin_user = st.radio("Choose an option:", ["Yes", "No"])
