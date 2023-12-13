@@ -56,11 +56,9 @@ X_train, X_test, y_train, y_test = train_test_split(X,
 # Initialize algorithm 
 lr = LogisticRegression()
 
-
 # Fit algorithm to training data
 lr.fit(X_train, y_train)
-
-y_pred = lr.predict(x_test)
+y_pred = lr.predict(X_test)
 
 st.markdown('''
 [LinkedIn User or Not?]:computer::smile::computer:
